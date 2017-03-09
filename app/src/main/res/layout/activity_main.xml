@@ -9,7 +9,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.example.harsha.cncbot.MainActivity">
+    tools:context="com.example.harsha.cncbot.MainActivity"
+    android:weightSum="1">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -38,10 +39,16 @@
             android:layout_width="75dp" />
 
         <Button
-            android:text="Undo"
+            android:text="clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_undo"
+            android:id="@+id/btn_clear"
             android:layout_weight="0" />
     </LinearLayout>
+
+    <com.example.harsha.cncbot.touchControl
+        android:layout_width="match_parent"
+        android:layout_height="500dp" />
+
+
 </LinearLayout>

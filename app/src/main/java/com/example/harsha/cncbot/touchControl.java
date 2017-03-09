@@ -16,6 +16,7 @@ import android.view.View;
 public class touchControl extends View {
     private Paint paint = new Paint();
     private Path path = new Path();
+    public int btn;
 
     public touchControl(Context context, AttributeSet attributes) {
         super(context, attributes);
