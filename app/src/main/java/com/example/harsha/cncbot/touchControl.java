@@ -20,7 +20,7 @@ public class touchControl extends View {
     public static int btn;
     public float oxpos,oypos,nxpos,nypos;
     public int flag,l;
-    public float[] lines = new float[40];
+    public float[] lines = new float[500];
 
     public touchControl(Context context, AttributeSet attributes) {
         super(context, attributes);
@@ -31,6 +31,8 @@ public class touchControl extends View {
         paint.setStrokeWidth(5f);
         btn=1;
         flag=0;
+        for(l=0;l<40;l++)
+            lines[l]=0;
         l=0;
     }
 
@@ -39,8 +41,10 @@ public class touchControl extends View {
         super.onDraw(canvas);
         if(btn==1)
             canvas.drawPath(path, paint);
-        else
+        else if (btn==2){                                               //For Straight Lines
+            canvas.drawLine(oxpos, oypos, nxpos, nypos, paint);
             canvas.drawLines(lines, paint);
+        }
     }
 
     @Override
@@ -56,19 +60,20 @@ public class touchControl extends View {
                 path.moveTo(nxpos, nypos);
                 return true;
             case MotionEvent.ACTION_MOVE:
-                path.lineTo(nxpos, nypos);
+                if(btn==1)
+                    path.lineTo(nxpos, nypos);
                 break;
             case MotionEvent.ACTION_UP:
                 flag=0;
+                if(btn==2){                                         //Lines array holds x,y points of all lines. (4 value sets [ox,oy,nx,ny])
+                    lines[l++]=oxpos;
+                    lines[l++]=oypos;
+                    lines[l++]=nxpos;
+                    lines[l++]=nypos;
+                }
                 break;
             default:
                 return false;
-        }
-        if(btn==2){
-            lines[l++]=oxpos;
-            lines[l++]=oypos;
-            lines[l++]=nxpos;
-            lines[l++]=nypos;
         }
         invalidate();
         return true;
