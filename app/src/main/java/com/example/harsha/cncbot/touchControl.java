@@ -73,6 +73,21 @@ public class touchControl extends View {
         tri_starty = oypos;
     }
 
+    public void draw_free(MotionEvent event){
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                path.moveTo(nxpos, nypos);
+                break;
+            case MotionEvent.ACTION_MOVE:
+                path.lineTo(nxpos, nypos);
+                break;
+            case MotionEvent.ACTION_UP:
+                flag=0;
+                break;
+        }
+    }
+
+
     public void draw_lines(MotionEvent event){
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
@@ -94,19 +109,6 @@ public class touchControl extends View {
         }
     }
 
-    public void draw_free(MotionEvent event){
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                path.moveTo(nxpos, nypos);
-                break;
-            case MotionEvent.ACTION_MOVE:
-                path.lineTo(nxpos, nypos);
-                break;
-            case MotionEvent.ACTION_UP:
-                flag=0;
-                break;
-        }
-    }
 
     public void draw_triangle(MotionEvent event){
         switch (event.getAction()){
@@ -118,25 +120,22 @@ public class touchControl extends View {
                     path.lineTo(nxpos, nypos);
                 break;
             case MotionEvent.ACTION_UP:
-                tri++;
-                if(tri==2) {
-                    tri=0;
-                    triangles[t++] = tri_startx;
-                    triangles[t++] = tri_starty;
-                    triangles[t++] = nxpos;
-                    triangles[t++] = nypos;
-                    flag = 0;
-                    break;
-                }
-                else {
                     triangles[t++] = oxpos;
                     triangles[t++] = oypos;
                     triangles[t++] = nxpos;
                     triangles[t++] = nypos;
                     oxpos = nxpos;
                     oypos = nypos;
+                    tri++;
+                    if(tri==2) {
+                        triangles[t++] = tri_startx;
+                        triangles[t++] = tri_starty;
+                        triangles[t++] = nxpos;
+                        triangles[t++] = nypos;
+                        tri = 0;
+                        flag = 0;
+                    }
                     break;
-                }
         }
     }
 }
