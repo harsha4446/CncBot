@@ -62,6 +62,8 @@ public class touchControl extends View {
             draw_lines(event);
         else if(btn==3)
             draw_triangle(event);
+        if(btn==4)
+            draw_box(event);
         invalidate();
         return true;
     }
@@ -137,6 +139,10 @@ public class touchControl extends View {
                     }
                     break;
         }
+    }
+
+    public void draw_box(MotionEvent event){
+
     }
 }
 
