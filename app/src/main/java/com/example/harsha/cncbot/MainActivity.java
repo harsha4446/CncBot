@@ -28,14 +28,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch(v.getId()){
             case R.id.btn_square:
                 touchControl.btn=2;
+                touchControl.flag=0;
                 break;
             case R.id.btn_triangle:
                 touchControl.btn=3;
+                touchControl.tri=0;
+                touchControl.flag=0;
                 break;
             case R.id.btn_line:
                 touchControl.btn=1;
+                touchControl.flag=0;
                 break;
             case R.id.btn_clear:
+                touchControl.flag=0;
                 break;
         }
 
